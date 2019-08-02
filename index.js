@@ -12,6 +12,11 @@ document.getElementById('input_bank').onblur = function () {
   console.log('Blur');
 };
 
+
+document.getElementById('select_date').onchange = function () {
+  console.log('Change', document.getElementById('select_date').value);
+};
+
 // document.getElementById('input').onclick = function () {
 //   setTimeout(function() {
 //     replace();
@@ -29,6 +34,11 @@ function replace(value) {
       '<p id=4>4</p>'+
       '<p id=1>1</p>'+
       '<p id=9>'+value+'</p>'+
+      '<select data-not-rerender="true" name="date" id="select_date">'+
+        '<option value="Не выбрано" selected>Не выбрано</option>'+
+        '<option value="2016">2016</option>'+
+        '<option value="2018">2018</option>'+
+      '</select>'+
     '</div>';
 
   morphdom(el1, el2, {
@@ -40,10 +50,10 @@ function replace(value) {
     },
     onBeforeElUpdated: function(fromEl, toEl) {
       // вариант 1, проверять аттрибут чтобы заново не перендерить input, button и т.д.
-      // if (fromEl.getAttribute('data-not-rererender') === 'true') {
-      //   console.log(fromEl.isEqualNode(toEl));
-      //   return false;
-      // }
+      if (fromEl.getAttribute('data-not-rerender') === 'true') {
+        console.log(fromEl.isEqualNode(toEl));
+        return false;
+      }
       // if (fromEl.type === 'text' && toEl.type === 'text') {
       //   console.log('onBeforeElChildrenUpdated=', fromEl, toEl);
       //   return false;

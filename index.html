@@ -10,11 +10,16 @@
 <body>
 
   <div id=list>
-    <input data-not-rererender="true" id="input_bank" type="text"/>
+    <input data-not-rerender="true" id="input_bank" type="text"/>
     <p id=1>1</p>
     <p id=2>2</p>
     <p id=3>3</p>
     <p id=4>4</p>
+    <select data-not-rerender="true" name="date" id="select_date">
+      <option value="Не выбрано" selected>Не выбрано</option>
+      <option value="2016">2016</option>
+      <option value="2018">2018</option>
+    </select>
   </div>
 
   <script src="./morphdom.js"></script>
